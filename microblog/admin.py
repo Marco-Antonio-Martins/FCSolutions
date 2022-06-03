@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import Pessoa, Post, Comentario
 
-# Register your models here.
+admin.site.register(Pessoa)
+admin.site.register(Comentario)
+admin.site.register(Post)
