@@ -7,6 +7,12 @@
     <title>Teste</title>
 </head>
 <body>
-    <div>{{ pessoa.nome }}</div>
+    
+    <div><p>{{ pessoa.nome }}</p></div>
+
+    {% for p in posts %}
+    <div><p>{{ p }}</p></div>
+    {% endfor %}
+
 </body>
 </html>
