@@ -1,5 +1,7 @@
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
+from django.template.defaultfilters import truncatechars
+
 
 class Pessoa(models.Model):
 
@@ -21,11 +23,15 @@ class Post(models.Model):
     class Meta:
         ordering = ("-data",)
     
-    '''def __str__(self):
-        return self.conteudo[:20]''' #Ta apagando e não só pra visualização
-    
     def __str__(self):
         return self.conteudo
+
+    #SilvioEdit // Função que retorna a descrição curta de 100 caracteres do conteudo
+    @property
+    def descricao_curta(self):
+        return truncatechars(self.conteudo, 100) 
+    # Exemplo de uso no admin.py
+                                                                
 
 class Comentario(models.Model):
     
@@ -36,5 +42,16 @@ class Comentario(models.Model):
 
     class Meta:
         ordering = ("data",)
+
+    def __str__(self):
+        return self.conteudo
+
+    #SilvioEdit // Aqui foram precisas duas funções por conta das duas variaveis serem max_length=200
+    @property
+    def descricao_curta_post(self):
+        return truncatechars(self.post, 100) 
+    @property
+    def descricao_curta_comentario(self):
+        return truncatechars(self.conteudo, 100)
 
         
